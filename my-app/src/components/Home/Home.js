@@ -4,7 +4,7 @@ function Home () {
     return (
         <>
         <NavBar />
-        <p>HOME</p>
+        <p>Home</p>
         <MovieList />
         </>
     )

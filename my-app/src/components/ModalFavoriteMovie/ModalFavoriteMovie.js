@@ -1,40 +1,42 @@
-
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 
-function ModalMovie(props) {
-
-    const [addFeedBack, setAddComment] = useState('');
-    function handleCommment(event) {
-        setAddComment(event.target.value);
+function ModalFavoriteMovie(props) {
+    const [updateFeedback, setUpdateFeedback] = useState('');
+    function handleUpdated(event) {
+        setUpdateFeedback(event.target.value);
     }
 
-    const comment = {
-        title: props.cardData.title,
-        release_date: props.cardData.release_date,
-        poster_path: props.cardData.poster_path,
-        overview: props.cardData.overview,
-        feedback: addFeedBack
-    }
+    // const fetchDelete = async () => {
+    //     // DELETE request using fetch with async/await
+    //     const element = document.querySelector('#delete-request-async-await .status');
+    //     await fetch(`https://movies-library-eosin.vercel.app/updatemovie/${props.cardData.id}`, { method: 'DELETE' });
+    // };
 
-    const fetchRes = async () => {
-        await fetch('https://movies-library-eosin.vercel.app/addmovies', {
 
-            method: 'POST',
+    const fetchUpdate = async () => {
+        console.log('dfdfhdfhdf');
+        await fetch(`https://movies-library-eosin.vercel.app/updatemovie/${props.cardData.id}`, {
 
-            body: JSON.stringify(
+            method: 'PUT',
 
-                comment
-            ),
+            body: JSON.stringify({
+
+                feedback: updateFeedback
+            }),
             headers: { 'Content-type': 'application/json; charset=UTF-8', },
         })
 
     }
-
+    useEffect(()=>{
+        fetchUpdate();
+    })
     return (
+
+
         <>
             <Modal show={props.showFlag} onHide={props.handleClose}>
                 <Modal.Header closeButton>
@@ -45,8 +47,8 @@ function ModalMovie(props) {
                     <img width='100%' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${props.cardData.poster_path}`} alt='poster' />
                     <div>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Add a comment...</Form.Label>
-                            <Form.Control as="textarea" onChange={handleCommment} rows={3} />
+                            <Form.Label>Update Your Feedback...</Form.Label>
+                            <Form.Control as="textarea" name='comment' onChange={handleUpdated} rows={3} defaultValue={props.cardData.feedback} />
                         </Form.Group>
                     </div>
                 </Modal.Body>
@@ -55,14 +57,14 @@ function ModalMovie(props) {
                         Close
                     </Button>
                     <Button variant="primary" onClick={() => {
-                        fetchRes()
+                        fetchUpdate()
                         props.handleClose()
                     }}>
-                        Add comment
+                        Update Feedback
                     </Button>
                 </Modal.Footer>
             </Modal>
         </>
     )
 }
-export default ModalMovie
+export default ModalFavoriteMovie;
