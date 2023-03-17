@@ -4,7 +4,6 @@ function FavoriteList () {
     return (
         <>
         <NavBar />
-        <p>Favorite List</p>
         <FavoriteMovie />
         </>
     )

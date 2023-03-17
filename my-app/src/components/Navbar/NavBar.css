@@ -1,0 +1,29 @@
+.navbar {
+    font-family: 'Play', sans-serif;
+    background-color: #a7a0a0;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .me-auto {
+    display: flex;
+  }
+
+.a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .a:hover {
+    color: #555;
+  }

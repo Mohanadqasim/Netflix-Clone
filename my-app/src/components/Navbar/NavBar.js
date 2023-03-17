@@ -1,16 +1,17 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import './NavBar.css'
 
 function NavBar() {
 
     return(
-        <Navbar bg="dark" variant="dark">
+        <Navbar className='navbar'>
         <Container>
-          <Navbar.Brand href="/">Netflix</Navbar.Brand>
+          <Navbar.Brand className='logo' href="/">Netflix</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/favorite_list">Favorite List</Nav.Link>
+            <Nav.Link className='a' href="/">Home</Nav.Link>
+            <Nav.Link className='a' href="/favorite_list">Favorite List</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

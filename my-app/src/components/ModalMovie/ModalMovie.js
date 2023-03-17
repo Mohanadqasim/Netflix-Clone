@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-
+import './ModalMovie.css'
 
 function ModalMovie(props) {
 

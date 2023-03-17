@@ -1,39 +1,33 @@
 import Button from 'react-bootstrap/Button';
-import { useEffect,useState } from "react";
+import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-
 
 function ModalFavoriteMovie(props) {
     const [updateFeedback, setUpdateFeedback] = useState('');
     function handleUpdated(event) {
+        event.preventDefault();
         setUpdateFeedback(event.target.value);
     }
-
-    // const fetchDelete = async () => {
-    //     // DELETE request using fetch with async/await
-    //     const element = document.querySelector('#delete-request-async-await .status');
-    //     await fetch(`https://movies-library-eosin.vercel.app/updatemovie/${props.cardData.id}`, { method: 'DELETE' });
-    // };
-
-
     const fetchUpdate = async () => {
-        console.log('dfdfhdfhdf');
+        const update = {
+            title: props.cardData.title,
+            release_date: props.cardData.release_date,
+            overview: props.cardData.overview,
+            poster_path: props.cardData.poster_path,
+            feedback: updateFeedback
+        };
         await fetch(`https://movies-library-eosin.vercel.app/updatemovie/${props.cardData.id}`, {
 
             method: 'PUT',
 
-            body: JSON.stringify({
+            body: JSON.stringify(
 
-                feedback: updateFeedback
-            }),
+                update
+            ),
             headers: { 'Content-type': 'application/json; charset=UTF-8', },
         })
-
     }
-    useEffect(()=>{
-        fetchUpdate();
-    })
     return (
 
 
