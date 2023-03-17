@@ -10,7 +10,21 @@ import Row from 'react-bootstrap/Row';
 
 
 function FavoriteMovie() {
-
+    const fetchDelete = async () => {
+        try {
+          const response = await fetch(`https://movies-library-eosin.vercel.app/deletemovie/${favoriteArray.id}`, {
+            method: 'DELETE'
+          });
+          if (!response.ok) {
+            throw new Error('Failed to delete movie');
+          }
+          // do something with successful response
+        } catch (error) {
+          console.error(error);
+          // handle error
+        }
+      };
+      
 
     const [favoriteArray, setFavoriteArray] = useState([]);
     const sendReq = async () => {
@@ -47,7 +61,7 @@ function FavoriteMovie() {
                             <Card.Body>
                                 <Card.Title>{item.title}</Card.Title>
                                 <Card.Text>{item.feedback}</Card.Text> 
-                                <Button variant="primary" onClick={{sendReq}}> Delete</Button>
+                                <Button variant="primary" onClick={{fetchDelete}}> Delete</Button>
                                 <Button variant="primary" onClick={() => { handleShow(item) }}> Update</Button>
                             </Card.Body>
                         </Card>
